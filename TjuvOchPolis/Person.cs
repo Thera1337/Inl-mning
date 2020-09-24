@@ -10,6 +10,7 @@ namespace TjuvOchPolis
         public int YPosition { get; set; }
         public int XMovment { get; set; }
         public int YMovment { get; set; }
+        public string Token { get; set; }
 
         public List<string> Inventory = new List<string>();
 
@@ -23,29 +24,26 @@ namespace TjuvOchPolis
     }
     class Polis : Person
     {
-        public string Token { get; set; }
-        public Polis(int xPosition, int yPosition, int xMovment, int yMovment, string token)
+        public Polis(int xPosition, int yPosition, int xMovment, int yMovment)
             : base(xPosition, yPosition, xMovment,  yMovment)
         {
-            Token = token;
+            Token = "P";
         }
     }
     class Tjuv : Person
     {
-        public string Token { get; set; }
-        public Tjuv(int xPosition, int yPosition, int xMovment, int yMovment, string token)
+        public Tjuv(int xPosition, int yPosition, int xMovment, int yMovment)
             : base(xPosition, yPosition, xMovment, yMovment)
         {
-            Token = token;
+            Token = "T";
         }
     }
     class Medborgare : Person
     {
-        public string Token { get; set; }
-        public Medborgare(int xPosition, int yPosition, int xMovment, int yMovment, string token)
+        public Medborgare(int xPosition, int yPosition, int xMovment, int yMovment)
             : base(xPosition, yPosition, xMovment, yMovment)
         {
-            Token = token;
+            Token = "M";
             Inventory.Add("Pånbok");
             Inventory.Add("Mobiltelefon");
             Inventory.Add("Nycklar");

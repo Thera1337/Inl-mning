@@ -6,7 +6,9 @@ namespace TjuvOchPolis
     {
         static void Main(string[] args)
         {
-            
+            GamePlan.GameBoard();
+            GamePlan.People();
+            GamePlan.PrintBoard();
         }
     }
 }
