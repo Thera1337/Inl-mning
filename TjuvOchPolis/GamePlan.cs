@@ -6,7 +6,7 @@ namespace TjuvOchPolis
 {
     class GamePlan
     {
-        static int x = 100;
+        static int x = 25;
         static int y = 25;
         static Random random = new Random();
         static string[,] board = new string[x , y];
