@@ -23,6 +23,7 @@ namespace TjuvOchPolis
     }
     class Polis : Person
     {
+        public static string Token = "P";
         public Polis(int xPosition, int yPosition, int xMovment, int yMovment)
             : base(xPosition, yPosition, xMovment,  yMovment)
         {
@@ -31,6 +32,7 @@ namespace TjuvOchPolis
     }
     class Tjuv : Person
     {
+        public static string Token = "T";
         public Tjuv(int xPosition, int yPosition, int xMovment, int yMovment)
             : base(xPosition, yPosition, xMovment, yMovment)
         {
@@ -39,6 +41,7 @@ namespace TjuvOchPolis
     }
     class Medborgare : Person
     {
+        public static string Token = "M";
         public Medborgare(int xPosition, int yPosition, int xMovment, int yMovment)
             : base(xPosition, yPosition, xMovment, yMovment)
         {
