@@ -18,18 +18,23 @@ namespace TjuvOchPolis
                     board[i, j] = "";
                 }
             }
+        }
+        public void People()
+        {
+            people.Add(new Polis(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)), "P");
+            people.Add(new Polis(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)), "P");
+            people.Add(new Polis(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)), "P");
+            people.Add(new Tjuv(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)), "T");
+            people.Add(new Tjuv(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)), "T");
+            people.Add(new Tjuv(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)), "T");
+            people.Add(new Medborgare(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)), "M");
+            people.Add(new Medborgare(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)), "M");
+            people.Add(new Medborgare(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)), "M");
 
-            people.Add(new Polis(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Polis(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Polis(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Tjuv(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Tjuv(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Tjuv(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Medborgare(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Medborgare(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Medborgare(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-
-
+            foreach (Person person in people)
+            {
+                board[person.XPositoin, person.YPosition] = 
+            }
         }
     }
 }

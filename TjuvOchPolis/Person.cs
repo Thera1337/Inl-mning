@@ -23,28 +23,29 @@ namespace TjuvOchPolis
     }
     class Polis : Person
     {
-        public static string Token = "P";
-        public Polis(int xPosition, int yPosition, int xMovment, int yMovment)
+        public string Token { get; set; }
+        public Polis(int xPosition, int yPosition, int xMovment, int yMovment, string token)
             : base(xPosition, yPosition, xMovment,  yMovment)
         {
-
+            Token = token;
         }
     }
     class Tjuv : Person
     {
-        public static string Token = "T";
-        public Tjuv(int xPosition, int yPosition, int xMovment, int yMovment)
+        public string Token { get; set; }
+        public Tjuv(int xPosition, int yPosition, int xMovment, int yMovment, string token)
             : base(xPosition, yPosition, xMovment, yMovment)
         {
-
+            Token = token;
         }
     }
     class Medborgare : Person
     {
-        public static string Token = "M";
-        public Medborgare(int xPosition, int yPosition, int xMovment, int yMovment)
+        public string Token { get; set; }
+        public Medborgare(int xPosition, int yPosition, int xMovment, int yMovment, string token)
             : base(xPosition, yPosition, xMovment, yMovment)
         {
+            Token = token;
             Inventory.Add("Pånbok");
             Inventory.Add("Mobiltelefon");
             Inventory.Add("Nycklar");
