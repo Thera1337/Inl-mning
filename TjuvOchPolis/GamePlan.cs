@@ -68,9 +68,9 @@ namespace TjuvOchPolis
             {
                 if (person.YPosition == -1 && person.YMovment == -1)
                 {
-                    person.YPosition = 99;
+                    person.YPosition = 24;
                 }
-                else if (person.YPosition == 100 && person.YMovment == 1)
+                else if (person.YPosition == 25 && person.YMovment == 1)
                 {
                     person.YPosition = 0;
                 }
