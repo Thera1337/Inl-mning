@@ -44,7 +44,7 @@ namespace TjuvOchPolis
             : base(xPosition, yPosition, xMovment, yMovment)
         {
             Token = "M";
-            Inventory.Add("Pånbok");
+            Inventory.Add("Plånbok");
             Inventory.Add("Mobiltelefon");
             Inventory.Add("Nycklar");
             Inventory.Add("Klocka");

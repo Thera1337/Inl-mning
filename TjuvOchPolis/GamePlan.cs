@@ -6,16 +6,16 @@ namespace TjuvOchPolis
 {
     class GamePlan
     {
-        static int x = 25;
+        static int x = 100;
         static int y = 25;
         static Random random = new Random();
         static string[,] board = new string[x , y];
         public static List<Person> people = new List<Person>();
         public static void GameBoard()
         {
-            for (int i = 0; i < y; i++)
+            for (int i = 0; i < x; i++)
             {
-                for (int j = 0; j < x; j++)
+                for (int j = 0; j < y; j++)
                 {
                     board[i, j] = " ";
                 }
@@ -23,24 +23,12 @@ namespace TjuvOchPolis
         }
         public static  void People()
         {
-            people.Add(new Polis(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Polis(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Polis(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Polis(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Polis(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Polis(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Tjuv(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Tjuv(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Tjuv(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Tjuv(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Tjuv(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Tjuv(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Medborgare(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Medborgare(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Medborgare(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Medborgare(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Medborgare(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
-            people.Add(new Medborgare(random.Next(0, 25 + 1), random.Next(0, 25 + 1), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
+            for (int i = 0; i < 6; i++)
+            {
+                people.Add(new Polis(random.Next(0, 25), random.Next(0, 25), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
+                people.Add(new Tjuv(random.Next(0, 25), random.Next(0, 25), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
+                people.Add(new Medborgare(random.Next(0, 25), random.Next(0, 25), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
+            }
 
             foreach (Person person in people)
             {
@@ -50,9 +38,9 @@ namespace TjuvOchPolis
 
         public static void PrintBoard()
         {
-            for (int i = 0; i < y; i++)
+            for (int i = 0; i < x; i++)
             {
-                for (int j = 0; j < x; j++)
+                for (int j = 0; j < y; j++)
                 {
                     Console.Write(board[i, j]);
                 }
