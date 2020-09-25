@@ -14,7 +14,7 @@ namespace TjuvOchPolis
 
         public List<string> Inventory = new List<string>();
 
-        public Person(int xPosition, int yPosition, int xMovment, int yMovment)
+        public Person(int yPosition, int xPosition, int yMovment, int xMovment)
         {
             XPositoin = xPosition;
             YPosition = yPosition;
@@ -24,24 +24,24 @@ namespace TjuvOchPolis
     }
     class Polis : Person
     {
-        public Polis(int xPosition, int yPosition, int xMovment, int yMovment)
-            : base(xPosition, yPosition, xMovment,  yMovment)
+        public Polis(int yPosition, int xPosition, int yMovment, int xMovment)
+            : base(yPosition, xPosition, yMovment,  xMovment)
         {
             Token = "P";
         }
     }
     class Tjuv : Person
     {
-        public Tjuv(int xPosition, int yPosition, int xMovment, int yMovment)
-            : base(xPosition, yPosition, xMovment, yMovment)
+        public Tjuv(int yPosition, int xPosition, int yMovment, int xMovment)
+            : base(yPosition, xPosition, yMovment, xMovment)
         {
             Token = "T";
         }
     }
     class Medborgare : Person
     {
-        public Medborgare(int xPosition, int yPosition, int xMovment, int yMovment)
-            : base(xPosition, yPosition, xMovment, yMovment)
+        public Medborgare(int yPosition, int xPosition, int yMovment, int xMovment)
+            : base(yPosition, xPosition, yMovment, xMovment)
         {
             Token = "M";
             Inventory.Add("Plånbok");
