@@ -12,6 +12,9 @@ namespace TjuvOchPolis
             for (int i = 0; i < 10; i++)
             {
                 GamePlan.GamePlay();
+                GamePlan.PrintBoard();
+                Console.ReadLine();
+                Console.Clear();
             }
         }
     }
