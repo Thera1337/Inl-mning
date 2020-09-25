@@ -47,5 +47,27 @@ namespace TjuvOchPolis
                 Console.Write("\n");
             }
         }
+
+        public static void GamePlay()
+        {
+            foreach (Person person in people)
+            {
+                person.XPositoin = person.XPositoin + person.XMovment;
+                person.YPosition = person.YPosition + person.YMovment;
+            }
+
+            for (int i = 0; i < y; i++)
+            {
+                for (int j = 0; j < x; j++)
+                {
+                    board[i, j] = " ";
+                }
+            }
+
+            foreach (Person person in people)
+            {
+                board[person.YPosition, person.XPositoin] = person.Token;
+            }
+        }
     }
 }

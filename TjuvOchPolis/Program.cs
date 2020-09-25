@@ -9,6 +9,10 @@ namespace TjuvOchPolis
             GamePlan.GameBoard();
             GamePlan.People();
             GamePlan.PrintBoard();
+            for (int i = 0; i < 10; i++)
+            {
+                GamePlan.GamePlay();
+            }
         }
     }
 }
