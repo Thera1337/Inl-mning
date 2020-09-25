@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace TjuvOchPolis
@@ -21,6 +22,9 @@ namespace TjuvOchPolis
             XMovment = xMovment;
             YMovment = yMovment;
         }
+
+        //public virtual void PlacePerson(string[,] map) 
+        //{}
     }
     class Polis : Person
     {
@@ -49,5 +53,10 @@ namespace TjuvOchPolis
             Inventory.Add("Nycklar");
             Inventory.Add("Klocka");
         }
+
+        //public override void PlacePerson(string[,] map)
+        //{
+        //    map[YPosition, XPositoin] = Token;
+        //}
     }
 }

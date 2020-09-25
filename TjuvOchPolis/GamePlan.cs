@@ -85,6 +85,12 @@ namespace TjuvOchPolis
 
                 board[person.YPosition, person.XPositoin] = person.Token;
             }
+
+            // Handle collision
+            //foreach (Person person in people)
+            //{
+            //    person.PlacePerson(board);
+            //}
         }
     }
 }
