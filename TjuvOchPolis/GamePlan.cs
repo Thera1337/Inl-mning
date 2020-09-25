@@ -66,6 +66,23 @@ namespace TjuvOchPolis
 
             foreach (Person person in people)
             {
+                if (person.YPosition == -1 && person.YMovment == -1)
+                {
+                    person.YPosition = 99;
+                }
+                else if (person.YPosition == 100 && person.YMovment == 1)
+                {
+                    person.YPosition = 0;
+                }
+                else if (person.XPositoin == -1 && person.XMovment == -1)
+                {
+                    person.XPositoin = 99;
+                }
+                else if (person.XPositoin == 100 && person.XMovment == 1)
+                {
+                    person.XPositoin = 0;
+                }
+
                 board[person.YPosition, person.XPositoin] = person.Token;
             }
         }
