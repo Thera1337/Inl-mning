@@ -9,12 +9,13 @@ namespace TjuvOchPolis
             GamePlan.GameBoard();
             GamePlan.People();
             GamePlan.PrintBoard();
-            for (int i = 0; i < 10; i++)
+            while (true)
             {
                 GamePlan.GamePlay();
                 GamePlan.PrintBoard();
                 Console.ReadLine();
                 Console.Clear();
+                GamePlan.meet = String.Empty;
             }
         }
     }
