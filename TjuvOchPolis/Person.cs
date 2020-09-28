@@ -12,6 +12,7 @@ namespace TjuvOchPolis
         public int XMovment { get; set; }
         public int YMovment { get; set; }
         public string Token { get; set; }
+        public string Kollision { get; set; }
 
         public List<string> Inventory = new List<string>();
 
@@ -21,10 +22,8 @@ namespace TjuvOchPolis
             YPosition = yPosition;
             XMovment = xMovment;
             YMovment = yMovment;
+            Kollision = "X";
         }
-
-        //public virtual void PlacePerson(string[,] map) 
-        //{}
     }
     class Polis : Person
     {
@@ -53,10 +52,5 @@ namespace TjuvOchPolis
             Inventory.Add("Nycklar");
             Inventory.Add("Klocka");
         }
-
-        //public override void PlacePerson(string[,] map)
-        //{
-        //    map[YPosition, XPositoin] = Token;
-        //}
     }
 }
