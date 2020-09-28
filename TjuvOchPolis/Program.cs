@@ -13,7 +13,7 @@ namespace TjuvOchPolis
             {
                 GamePlan.GamePlay();
                 GamePlan.PrintBoard();
-                Console.ReadLine();
+                //Console.ReadLine();
                 Console.Clear();
                 GamePlan.meet = String.Empty;
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace TjuvOchPolis
 {
@@ -24,17 +25,17 @@ namespace TjuvOchPolis
         }
         public static  void People()
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 20; i++)
             {
                 people.Add(new Medborgare(random.Next(0, y), random.Next(0, x), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
             }
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 20; i++)
             {
                 people.Add(new Tjuv(random.Next(0, y), random.Next(0, x), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
             }
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 10; i++)
             {
                 people.Add(new Polis(random.Next(0, y), random.Next(0, x), random.Next(-1, 1 + 1), random.Next(-1, 1 + 1)));
             }
@@ -56,14 +57,18 @@ namespace TjuvOchPolis
                 Console.Write("\n");
             }
             Console.Write(meet);
+            if (meet != String.Empty)
+            {
+                Thread.Sleep(2500);
+            }
         }
 
         public static void GamePlay()
         {
             foreach (Person person in people)
             {
-                person.XPositoin = person.XPositoin + person.XMovment;
-                person.YPosition = person.YPosition + person.YMovment;
+                person.XPositoin += person.XMovment;
+                person.YPosition += person.YMovment;
             }
 
             GameBoard();
@@ -103,12 +108,6 @@ namespace TjuvOchPolis
                     meet = "Polis beslagtog från tjuv";
                 }
             }
-
-            // Handle collision
-            //foreach (Person person in people)
-            //{
-            //    person.PlacePerson(board);
-            //}
         }
     }
 }
