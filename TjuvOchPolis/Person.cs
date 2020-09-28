@@ -12,8 +12,9 @@ namespace TjuvOchPolis
         public int XMovment { get; set; }
         public int YMovment { get; set; }
         public string Token { get; set; }
+        public string Kollision { get; set; }
 
-        public List<string> Inventory = new List<string>();
+        public List<Tillhörighet> Inventory = new List<Tillhörighet>();
 
         public Person(int yPosition, int xPosition, int yMovment, int xMovment)
         {
@@ -21,10 +22,8 @@ namespace TjuvOchPolis
             YPosition = yPosition;
             XMovment = xMovment;
             YMovment = yMovment;
+            Kollision = "X";
         }
-
-        //public virtual void PlacePerson(string[,] map) 
-        //{}
     }
     class Polis : Person
     {
@@ -48,15 +47,19 @@ namespace TjuvOchPolis
             : base(yPosition, xPosition, yMovment, xMovment)
         {
             Token = "M";
-            Inventory.Add("Plånbok");
-            Inventory.Add("Mobiltelefon");
-            Inventory.Add("Nycklar");
-            Inventory.Add("Klocka");
+            Inventory.Add(new Tillhörighet ("Plånbok"));
+            Inventory.Add(new Tillhörighet("Mobiltelefon"));
+            Inventory.Add(new Tillhörighet("Nycklar"));
+            Inventory.Add(new Tillhörighet("Klocka"));
         }
+    }
+    class Tillhörighet
+    {
+        public string Pryl { get; set; }
 
-        //public override void PlacePerson(string[,] map)
-        //{
-        //    map[YPosition, XPositoin] = Token;
-        //}
+        public Tillhörighet(string pryl)
+        {
+            Pryl = pryl;
+        }
     }
 }
