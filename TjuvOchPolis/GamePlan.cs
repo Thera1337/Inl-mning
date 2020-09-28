@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 
@@ -11,7 +12,8 @@ namespace TjuvOchPolis
         static int y = 25;
         public static string meet = "";
         static Random random = new Random();
-        static string[,] board = new string[y, x];
+        //static string[,] board = new string[y, x];
+        static Person[,] board2 = new Person[y, x];
         public static List<Person> people = new List<Person>();
         public static void GameBoard()
         {
@@ -19,7 +21,7 @@ namespace TjuvOchPolis
             {
                 for (int j = 0; j < x; j++)
                 {
-                    board[i, j] = " ";
+                    board2[i, j] = null;
                 }
             }
         }
@@ -42,7 +44,7 @@ namespace TjuvOchPolis
 
             foreach (Person person in people)
             {
-                board[person.YPosition, person.XPositoin] = person.Token;
+                board2[person.YPosition, person.XPositoin] = person;
             }
         }
 
@@ -52,7 +54,7 @@ namespace TjuvOchPolis
             {
                 for (int j = 0; j < x; j++)
                 {
-                    Console.Write(board[i, j]);
+                    Console.Write(board2[i, j].Token);
                 }
                 Console.Write("\n");
             }
@@ -93,18 +95,37 @@ namespace TjuvOchPolis
                 }
 
 
-                if (board[person.YPosition, person.XPositoin] == " ")
+                if (board2[person.YPosition, person.XPositoin] == null)
                 {
-                    board[person.YPosition, person.XPositoin] = person.Token;
+                    board2[person.YPosition, person.XPositoin] = person;
                 }
-                else if (board[person.YPosition, person.XPositoin] == "M" && person is Tjuv)
+                else if (board2[person.YPosition, person.XPositoin] is Medborgare && person is Tjuv)
                 {
-                    board[person.YPosition, person.XPositoin] = "X";
+                    Person medborgare = board2[person.YPosition, person.XPositoin];
+
+                    if (medborgare.Inventory.Count > 0)
+                    {
+                        int plock = random.Next(0, medborgare.Inventory.Count);
+                     
+                        person.Inventory.Add(medborgare.Inventory[plock]);
+                        medborgare.Inventory.RemoveAt(plock);
+                    }
+                    //board2[person.YPosition, person.XPositoin] = person.Kollision;
+
                     meet = "Tjuv stal från medborgare";
                 }
-                else if (board[person.YPosition, person.XPositoin] == "T" && person is Polis)
+                else if (board2[person.YPosition, person.XPositoin] is Tjuv && person is Polis)
                 {
-                    board[person.YPosition, person.XPositoin] = "X";
+                    Person tjuv = board2[person.YPosition, person.XPositoin];
+
+                    if (tjuv.Inventory.Count > 0)
+                    {
+                        int plock = random.Next(0, tjuv.Inventory.Count);
+
+                        person.Inventory.Add(tjuv.Inventory[plock]);
+                        tjuv.Inventory.RemoveAt(plock);
+                    }
+                    //board2[person.YPosition, person.XPositoin] = person.Kollision;
                     meet = "Polis beslagtog från tjuv";
                 }
             }
