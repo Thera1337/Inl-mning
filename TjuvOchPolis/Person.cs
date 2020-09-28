@@ -14,7 +14,7 @@ namespace TjuvOchPolis
         public string Token { get; set; }
         public string Kollision { get; set; }
 
-        public List<string> Inventory = new List<string>();
+        public List<Tillhörighet> Inventory = new List<Tillhörighet>();
 
         public Person(int yPosition, int xPosition, int yMovment, int xMovment)
         {
@@ -47,10 +47,19 @@ namespace TjuvOchPolis
             : base(yPosition, xPosition, yMovment, xMovment)
         {
             Token = "M";
-            Inventory.Add("Plånbok");
-            Inventory.Add("Mobiltelefon");
-            Inventory.Add("Nycklar");
-            Inventory.Add("Klocka");
+            Inventory.Add(new Tillhörighet ("Plånbok"));
+            Inventory.Add(new Tillhörighet("Mobiltelefon"));
+            Inventory.Add(new Tillhörighet("Nycklar"));
+            Inventory.Add(new Tillhörighet("Klocka"));
+        }
+    }
+    class Tillhörighet
+    {
+        public string Pryl { get; set; }
+
+        public Tillhörighet(string pryl)
+        {
+            Pryl = pryl;
         }
     }
 }
