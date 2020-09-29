@@ -6,16 +6,15 @@ namespace TjuvOchPolis
     {
         static void Main(string[] args)
         {
-            GamePlan.GameBoard();
             GamePlan.People();
+            GamePlan.PlaceBoard();
             GamePlan.PrintBoard();
             while (true)
             {
                 GamePlan.GamePlay();
+                GamePlan.PlaceBoard();
                 GamePlan.PrintBoard();
-                //Console.ReadLine();
                 Console.Clear();
-                GamePlan.meet = String.Empty;
             }
         }
     }

@@ -14,6 +14,7 @@ namespace TjuvOchPolis
         public string Token { get; set; }
         public string Kollision { get; set; }
         public bool HasCollided { get; set; }
+        public bool InPrison { get; set; }
 
         public List<Tillhörighet> Inventory = new List<Tillhörighet>();
 
@@ -25,6 +26,7 @@ namespace TjuvOchPolis
             YMovment = yMovment;
             Kollision = "X";
             HasCollided = false;
+            InPrison = false;
         }
     }
     class Polis : Person
