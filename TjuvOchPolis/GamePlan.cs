@@ -21,7 +21,7 @@ namespace TjuvOchPolis
             {
                 for (int j = 0; j < x; j++)
                 {
-                    board2[i, j] = null;
+                    board2[i, j] = new Dummy(0,0,0,0);
                 }
             }
         }
@@ -54,7 +54,14 @@ namespace TjuvOchPolis
             {
                 for (int j = 0; j < x; j++)
                 {
-                    Console.Write(board2[i, j].Token);
+                    if (board2[i,j] is Person && board2[i, j].HasCollided)
+                    {
+                        Console.Write(board2[i, j].Kollision);
+                    }
+                    else if (board2[i,j] is Person)
+                    {
+                        Console.Write(board2[i, j].Token);
+                    }
                 }
                 Console.Write("\n");
             }
@@ -62,6 +69,14 @@ namespace TjuvOchPolis
             if (meet != String.Empty)
             {
                 Thread.Sleep(2500);
+            }
+        }
+        public static void PlaceBoard()
+        {
+            GameBoard();
+            foreach (Person person in people)
+            {
+                board2[person.YPosition, person.XPositoin] = person;
             }
         }
 
@@ -73,8 +88,11 @@ namespace TjuvOchPolis
                 person.YPosition += person.YMovment;
             }
 
-            GameBoard();
-            
+            foreach (Person person in people)
+            {
+                person.HasCollided = false;
+            }
+
             foreach (Person person in people)
             {
                 if (person.YPosition == -1 && person.YMovment == -1)
@@ -93,8 +111,10 @@ namespace TjuvOchPolis
                 {
                     person.XPositoin = 0;
                 }
+            }
 
-
+            foreach (Person person in people)
+            {
                 if (board2[person.YPosition, person.XPositoin] == null)
                 {
                     board2[person.YPosition, person.XPositoin] = person;
@@ -109,9 +129,8 @@ namespace TjuvOchPolis
                      
                         person.Inventory.Add(medborgare.Inventory[plock]);
                         medborgare.Inventory.RemoveAt(plock);
+                        person.HasCollided = true;
                     }
-                    //board2[person.YPosition, person.XPositoin] = person.Kollision;
-
                     meet = "Tjuv stal från medborgare";
                 }
                 else if (board2[person.YPosition, person.XPositoin] is Tjuv && person is Polis)
@@ -124,8 +143,8 @@ namespace TjuvOchPolis
 
                         person.Inventory.Add(tjuv.Inventory[plock]);
                         tjuv.Inventory.RemoveAt(plock);
+                        person.HasCollided = true;
                     }
-                    //board2[person.YPosition, person.XPositoin] = person.Kollision;
                     meet = "Polis beslagtog från tjuv";
                 }
             }
