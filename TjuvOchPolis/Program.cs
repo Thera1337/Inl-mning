@@ -14,7 +14,12 @@ namespace TjuvOchPolis
                 GamePlan.PlaceBoard();
                 GamePlan.PrintBoard();
                 Console.SetCursorPosition(0, 0);
+                if (GamePlan.busted > 10)
+                {
+                    break;
+                }
             }
+            GamePlan.EndPrint();
         }
     }
 }
