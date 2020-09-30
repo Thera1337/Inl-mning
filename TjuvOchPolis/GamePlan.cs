@@ -99,10 +99,12 @@ namespace TjuvOchPolis
 
         public static void PrintBoard()
         {
+            Console.SetCursorPosition(0, 0);
             for (int i = 0; i < y; i++)
             {
                 for (int j = 0; j < x; j++)
                 {
+
                     if (board2[i,j] is Person && board2[i, j].HasCollided)
                     {
                         Console.Write(board2[i, j].Kollision);
@@ -130,8 +132,8 @@ namespace TjuvOchPolis
             {
                 Thread.Sleep(2500);
             }
-            meet = String.Empty;
-            prisonInfo = String.Empty;
+            meet = "                                   ";
+            prisonInfo = "                                   ";
             
         }
         public static void PlaceBoard()
@@ -167,12 +169,12 @@ namespace TjuvOchPolis
                         int plock = random.Next(0, medborgare.Inventory.Count);
                      
                         person.Inventory.Add(medborgare.Inventory[plock]);
-                        medborgare.Inventory.RemoveAt(plock);
                         person.HasCollided = true;
                         medborgare.HasCollided = true;
+                        meet = $"Tjuv stal {medborgare.Inventory[plock].Pryl} från medborgare";
+                        medborgare.Inventory.RemoveAt(plock);
                     }
                     stolen++;
-                    meet = "Tjuv stal från medborgare";
                 }
                 else if (check is Tjuv && !check.InPrison && person is Polis)
                 {

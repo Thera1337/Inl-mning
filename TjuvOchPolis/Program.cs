@@ -13,7 +13,6 @@ namespace TjuvOchPolis
                 GamePlan.GamePlay();
                 GamePlan.PlaceBoard();
                 GamePlan.PrintBoard();
-                Console.SetCursorPosition(0, 0);
             }
         }
     }

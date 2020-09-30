@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TjuvOchPolis
 {
-    class Person
+    abstract class Person
     {
         public int XPositoin { get; set; }
         public int YPosition { get; set; }
