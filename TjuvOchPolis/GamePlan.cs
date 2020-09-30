@@ -99,7 +99,6 @@ namespace TjuvOchPolis
 
         public static void PrintBoard()
         {
-            Console.SetCursorPosition(0, 0);
             for (int i = 0; i < y; i++)
             {
                 for (int j = 0; j < x; j++)
@@ -131,9 +130,10 @@ namespace TjuvOchPolis
             if (meet != String.Empty || prisonInfo != String.Empty)
             {
                 Thread.Sleep(2500);
+                Console.Clear();
             }
-            meet = "                                   ";
-            prisonInfo = "                                   ";
+            meet = String.Empty;
+            prisonInfo = String.Empty;
             
         }
         public static void PlaceBoard()
