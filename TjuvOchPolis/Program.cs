@@ -8,13 +8,12 @@ namespace TjuvOchPolis
         {
             GamePlan.People();
             GamePlan.PlaceBoard();
-            GamePlan.PrintBoard();
             while (true)
             {
                 GamePlan.GamePlay();
                 GamePlan.PlaceBoard();
                 GamePlan.PrintBoard();
-                Console.Clear();
+                Console.SetCursorPosition(0, 0);
             }
         }
     }

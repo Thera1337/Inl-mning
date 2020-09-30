@@ -70,7 +70,31 @@ namespace TjuvOchPolis
         }
         public static void PeopleMovement()
         {
+            foreach (Person person in people)
+            {
+                person.XPositoin += person.XMovment;
+                person.YPosition += person.YMovment;
+            }
 
+            foreach (Person person in people)
+            {
+                if (person.YPosition == -1 && person.YMovment == -1)
+                {
+                    person.YPosition = 24;
+                }
+                else if (person.YPosition == 25 && person.YMovment == 1)
+                {
+                    person.YPosition = 0;
+                }
+                if (person.XPositoin == -1 && person.XMovment == -1)
+                {
+                    person.XPositoin = 99;
+                }
+                else if (person.XPositoin == 100 && person.XMovment == 1)
+                {
+                    person.XPositoin = 0;
+                }
+            }
         }
 
         public static void PrintBoard()
@@ -106,6 +130,8 @@ namespace TjuvOchPolis
             {
                 Thread.Sleep(2500);
             }
+            meet = String.Empty;
+            prisonInfo = String.Empty;
             
         }
         public static void PlaceBoard()
@@ -119,40 +145,14 @@ namespace TjuvOchPolis
 
         public static void GamePlay()
         {
-            meet = String.Empty;
-            prisonInfo = String.Empty;
 
-            foreach (Person person in people)
-            {
-                person.XPositoin += person.XMovment;
-                person.YPosition += person.YMovment;
-            }
 
             foreach (Person person in people)
             {
                 person.HasCollided = false;
             }
 
-            foreach (Person person in people)
-            {
-                if (person.YPosition == -1 && person.YMovment == -1)
-                {
-                    person.YPosition = 24;
-                }
-                else if (person.YPosition == 25 && person.YMovment == 1)
-                {
-                    person.YPosition = 0;
-                }
-                if (person.XPositoin == -1 && person.XMovment == -1)
-                {
-                    person.XPositoin = 99;
-                }
-                else if (person.XPositoin == 100 && person.XMovment == 1)
-                {
-                    person.XPositoin = 0;
-                }
-            }
-
+            PeopleMovement();
             PrisonRelease();
 
             foreach (Person person in people)
@@ -180,10 +180,12 @@ namespace TjuvOchPolis
 
                     if (tjuv.Inventory.Count > 0)
                     {
-                        int plock = random.Next(0, tjuv.Inventory.Count);
+                        for (int i = 0; i < tjuv.Inventory.Count; i++)
+                        {
+                            person.Inventory.Add(tjuv.Inventory[i]);
+                            tjuv.Inventory.RemoveAt(i);
 
-                        person.Inventory.Add(tjuv.Inventory[plock]);
-                        tjuv.Inventory.RemoveAt(plock);
+                        }
                         person.HasCollided = true;
                         tjuv.HasCollided = true;
                     }
