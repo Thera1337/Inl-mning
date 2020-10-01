@@ -21,26 +21,33 @@ namespace TjuvOchPolis
         static List<Person> people = new List<Person>();
         static List<Sentence> Prison = new List<Sentence>();
 
-        public static void PrisonSentence(Person person)
+        public static void GamePlay()
         {
-            Prison.Add(new Sentence(person));
-            person.InPrison = true;
-            prisonInfo = "Tjuv satt i fängelse.";
-        }
-        public static void PrisonRelease()
-        {
-            for (int i = 0; i < Prison.Count; i++)
+            Reset();
+            PeopleMovement();
+            PrisonRelease();
+
+            foreach (Person person in people)
             {
-                if (Prison[i].TimeElapsed() > 30)
+                Person check = board[person.YPosition, person.XPositoin];
+                if (check is Medborgare && person is Tjuv && !person.InPrison)
                 {
-                    Prison[i].Inmate.InPrison = false;
-                    Prison.RemoveAt(i);
-                    i--;
-                    prisonInfo = "Tjuv släppt från fängelse.";
+                    Steal(check, person);
+                }
+                else if (check is Tjuv && !check.InPrison && person is Polis)
+                {
+                    Jail(check, person);
                 }
             }
         }
-
+        public static void PlaceBoard()
+        {
+            GameBoard();
+            foreach (Person person in people)
+            {
+                board[person.YPosition, person.XPositoin] = person;
+            }
+        }
         public static void GameBoard()
         {
             for (int i = 0; i < y; i++)
@@ -96,7 +103,57 @@ namespace TjuvOchPolis
                 }
             }
         }
+        public static void PrisonSentence(Person person)
+        {
+            Prison.Add(new Sentence(person));
+            person.InPrison = true;
+            prisonInfo = "Tjuv satt i fängelse.";
+        }
+        public static void PrisonRelease()
+        {
+            for (int i = 0; i < Prison.Count; i++)
+            {
+                if (Prison[i].TimeElapsed() > 30)
+                {
+                    Prison[i].Inmate.InPrison = false;
+                    Prison.RemoveAt(i);
+                    i--;
+                    prisonInfo = "Tjuv släppt från fängelse.";
+                }
+            }
+        }
+        static void Steal(Person medborgare, Person tjuv)
+        {
+            tjuv.HasCollided = true;
+            medborgare.HasCollided = true;
 
+            if (medborgare.Inventory.Count > 0)
+            {
+                int plock = random.Next(0, medborgare.Inventory.Count);
+                     
+                tjuv.Inventory.Add(medborgare.Inventory[plock]);
+                meet = $"Tjuv stal {medborgare.Inventory[plock].Pryl} från medborgare";
+                medborgare.Inventory.RemoveAt(plock);
+                stolen++;
+            }
+        }
+        static void Jail(Person tjuv, Person polis)
+        {
+            polis.HasCollided = true;
+            tjuv.HasCollided = true;
+
+            if (tjuv.Inventory.Count > 0)
+            {
+                for (int i = 0; i < tjuv.Inventory.Count; i++)
+                {
+                    polis.Inventory.Add(tjuv.Inventory[i]);
+                    tjuv.Inventory.RemoveAt(i);
+                }
+            }
+            busted++;
+            meet = "Polis beslagtog från tjuv";
+            PrisonSentence(tjuv);
+        }
         public static void PrintBoard()
         {
             for (int i = 0; i < y; i++)
@@ -166,65 +223,11 @@ namespace TjuvOchPolis
                 Console.WriteLine($"Tid avtjänat: {tjuv.TimeElapsed()}");
             }
         }
-        public static void PlaceBoard()
+        static void Reset()
         {
-            GameBoard();
-            foreach (Person person in people)
-            {
-                board[person.YPosition, person.XPositoin] = person;
-            }
-        }
-
-        public static void GamePlay()
-        {
-
-
             foreach (Person person in people)
             {
                 person.HasCollided = false;
-            }
-
-            PeopleMovement();
-            PrisonRelease();
-
-            foreach (Person person in people)
-            {
-                Person check = board[person.YPosition, person.XPositoin];
-                if (check is Medborgare && person is Tjuv && !person.InPrison)
-                {
-                    Person medborgare = check;
-                    person.HasCollided = true;
-                    medborgare.HasCollided = true;
-
-                    if (medborgare.Inventory.Count > 0)
-                    {
-                        int plock = random.Next(0, medborgare.Inventory.Count);
-                     
-                        person.Inventory.Add(medborgare.Inventory[plock]);
-                        meet = $"Tjuv stal {medborgare.Inventory[plock].Pryl} från medborgare";
-                        medborgare.Inventory.RemoveAt(plock);
-                    }
-                    stolen++;
-                }
-                else if (check is Tjuv && !check.InPrison && person is Polis)
-                {
-                    Person tjuv = check;
-                    person.HasCollided = true;
-                    tjuv.HasCollided = true;
-
-                    if (tjuv.Inventory.Count > 0)
-                    {
-                        for (int i = 0; i < tjuv.Inventory.Count; i++)
-                        {
-                            person.Inventory.Add(tjuv.Inventory[i]);
-                            tjuv.Inventory.RemoveAt(i);
-
-                        }
-                    }
-                    busted++;
-                    meet = "Polis beslagtog från tjuv";
-                    PrisonSentence(tjuv);
-                }
             }
         }
     }
